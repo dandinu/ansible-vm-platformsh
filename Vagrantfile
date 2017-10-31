@@ -1,3 +1,13 @@
+# check is necessary plugins are available
+[
+  { :name => "vagrant-guest_ansible", :version => ">= 0.0.3" },
+].each do |plugin|
+
+  if not Vagrant.has_plugin?(plugin[:name], plugin[:version])
+    raise "#{plugin[:name]} #{plugin[:version]} is required. Please run `vagrant plugin install #{plugin[:name]}`"
+  end
+end
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
