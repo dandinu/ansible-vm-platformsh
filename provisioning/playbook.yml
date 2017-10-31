@@ -138,16 +138,16 @@
       
   - name: Install Platform.sh CLI with Composer.
     shell: >
-      /usr/local/bin/composer global require 'platformsh/cli:1.*' 
-    sudo: yes
-    sudo_user: vagrant
+      /usr/local/bin/composer global require 'platformsh/cli:@stable'
+    become: true
+    become_user: vagrant
 
   # we are in home dir now after composer CLI install
   - name: update PATH in ~/.bash_profile for platform command
     shell: >
-      echo 'export PATH="$PATH:~/.composer/vendor/bin"' >> ./.bash_profile
-    sudo: yes
-    sudo_user: vagrant
+      echo 'export PATH="$PATH:~/.composer/vendor/bin"' >> ~/.bash_profile
+    become: true
+    become_user: vagrant
     
 ## We don't actually install Drupal at drupal_core_path
 ## We just want to use the virtual host and database for our Platform.sh Project
